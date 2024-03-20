@@ -1,0 +1,28 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-test
+  annotations:
+        kubernetes.io/elb.port: '443'
+        kubernetes.io/elb.id: 6e10ec9a-b6c7-436e-885a-b93b1874dc7d 
+        kubernetes.io/elb.class: performance 
+        cert-manager.io/cluster-issuer: letsencrypt
+spec:
+  rules:
+  - host: 'cce-demo.sdombi.hu'
+    http:
+      paths:
+      - path: '/'
+        backend:
+          service:
+            name: nginx-service 
+            port:
+              number: 80
+        property:
+          ingress.beta.kubernetes.io/url-match-mode: STARTS_WITH
+        pathType: ImplementationSpecific
+  tls:
+  - hosts:
+    - cce-demo.sdombi.hu
+    secretName: letsencrypt-demo-sdombi 
+  ingressClassName: cce 

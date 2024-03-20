@@ -1,0 +1,21 @@
+apiVersion: cert-manager.io/v1
+kind: Issuer 
+metadata:
+  name: letsencrypt-prod
+  namespace: dedicated-elb
+spec:
+  acme:
+    server: https://acme-v02.api.letsencrypt.org/directory
+    email: dombisza@gmail.com 
+    privateKeySecretRef:
+      name: letsencrypt-dedicated
+    solvers:
+    - http01:
+        ingress:
+          ingressClassName: cce 
+          ingressTemplate:
+            metadata:
+              annotations:
+                "kubernetes.io/elb.port": "80"
+                "kubernetes.io/elb.id": "d66f570c-648d-4e0c-a7f8-e3cdfb491af6"
+                "kubernetes.io/elb.class": "performance"

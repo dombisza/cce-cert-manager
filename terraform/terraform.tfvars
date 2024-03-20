@@ -1,0 +1,8 @@
+elb_name = "sdombi-cert-manager"
+vpc_id = "229c852a-43a4-4cb1-8b4a-71374ddbacfc"
+subnet_id = "70c30353-7e08-447c-995d-ba295e83fe10"
+network_id = "ff86833f-d1e8-4054-95c3-f58b5ed0c71b"
+my_domain = "sdombi.hu."
+my_email = "dombisza@gmail.com"
+dedicated_sub_domain = "cce-demo"
+shared_sub_domain = "shared"
